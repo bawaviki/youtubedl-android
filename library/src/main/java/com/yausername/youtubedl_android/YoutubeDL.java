@@ -43,6 +43,8 @@ public class YoutubeDL {
     private String ENV_SSL_CERT_FILE;
     private String ENV_PYTHONHOME;
 
+    Process process;
+
     protected static final ObjectMapper objectMapper = new ObjectMapper();
 
     private YoutubeDL(){
@@ -155,7 +157,7 @@ public class YoutubeDL {
         }
 
         YoutubeDLResponse youtubeDLResponse;
-        Process process;
+//        Process process;
         int exitCode;
         StringBuffer outBuffer = new StringBuffer(); //stdout
         StringBuffer errBuffer = new StringBuffer(); //stderr
@@ -206,6 +208,10 @@ public class YoutubeDL {
         youtubeDLResponse = new YoutubeDLResponse(command, exitCode, elapsedTime, out, err);
 
         return youtubeDLResponse;
+    }
+
+    public void stop(){
+        process.destroy();
     }
 
     synchronized public UpdateStatus updateYoutubeDL(Context appContext) throws YoutubeDLException {

@@ -45,7 +45,7 @@ public class CommandExampleActivity extends AppCompatActivity implements View.On
 
     private DownloadProgressCallback callback = new DownloadProgressCallback() {
         @Override
-        public void onProgressUpdate(float progress, long etaInSeconds) {
+        public void onProgressUpdate(float progress,long size, long rate, long etaInSeconds) {
             runOnUiThread(() -> {
                         progressBar.setProgress((int) progress);
                         tvCommandStatus.setText(String.valueOf(progress) + "% (ETA " + String.valueOf(etaInSeconds) + " seconds)");
